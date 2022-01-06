@@ -2,45 +2,87 @@ const tbody = document.getElementById(`tbody`);
 const btn = document.getElementById(`btn`);
 const email = document.getElementById(`email`);
 const password = document.getElementById(`password`);
-const result = `https://randomuser.me/api/?results=10`;
+const url = `https://randomuser.me/api/?results=10`;
 
-localStorage.setItem('email', '@schoolofit');
-let isAdmin = false;
+const isAdmin = [
+    {
+        email: "@schoolofit",
+        isAdmin: true
+    }
+];
 
-// btn.addEventListener(`click`,(e) =>{
-//     e.preventDefault();
-//     if (email.value === '@schoolofit') {
-//         isAdmin = true;
-//     } else {
-//         isAdmin = false;
+// function check() {
+//     const Admin = localStorage.getItem("isAdmin",JSON.parse(isAdmin));
+//     if (email.value === Admin) {
+//         fetchdataAdmin();
 //     }
-// })
+//     else{
+//         fetchdataUser();
+//     }
+// }
 
-
-fetch(result, { method: "GET" })
-    .then((response) => {
-      return response.json();
+function fetchdataUser() {
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw Error('ERROR');
+        }
+        return response.json();
     })
-    .then((data) => {
-       console.log(data);
-        for (let i = 0; i < data.length; i++) {
-            const temp = `
-                <tr>
-                    <td>${data[i].tilte}</td>
-                    <td>${data[i].first}</td>
-                    <td>${data[i].last}</td>
-                    <td>${data[i].email}</td>
-                    <td>${data[i].gender}</td>
-                </tr>
+    .then(data => {
+        const html = data.results
+        .map(user => {
+            return `
+            <tr>
+                <td>${user.name.title}</td>
+                <td>${user.name.first}</td>
+                <td>${user.name.last}</td>
+                <td>${user.email}</td>
+                <td>${user.gender}</td>
+            </tr>
             `;
-    
-            tbody.innerHTML += temp;
-            }
         })
-        .catch((error) => {
+        .join('');
+        tbody.insertAdjacentHTML('afterbegin',html);
+    })
+    .catch(error => {
         console.log(error);
     });
+}
 
+// function fetchdataAdmin() {
+//     fetch(url)
+//     .then(response => {
+//         if (!response.ok) {
+//             throw Error('ERROR');
+//         }
+//         return response.json();
+//     })
+//     .then(data => {
+//         const html = data.results
+//         .map(user => {
+//             return `
+//             <tr>
+//                 <td>${user.name.title}</td>
+//                 <td>${user.name.first}</td>
+//                 <td>${user.name.last}</td>
+//                 <td>${user.email}</td>
+//                 <td>${user.gender}</td>
+//                 <td>${user.gender}</td>
+//                 <button id="modal">"EDIT"</button>
+//             </tr>
+//             `;
+//         })
+//         .join('');
+//         tbody.insertAdjacentHTML('afterbegin',html);
+//     })
+//     .catch(error => {
+//         console.log(error);
+//     });
+// }
 
+fetchdataUser();
 
-
+// btn.addEventListener('click', () => {
+//     check();
+// })
