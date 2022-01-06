@@ -3,10 +3,9 @@
 }
 body {
     margin: .5em;
-    background-color: rgb(173, 7, 165);
 }
 .container {
-    border: 1px solid rgb(128, 0, 90);
+    border: 10px solid rgb(128, 0, 90);
     border-radius: 30px;
     background-color: rgb(255, 253, 253);
     padding: 2em;
@@ -26,8 +25,8 @@ input {
     box-sizing: border-box;
     display: block;
 }
-a {
-    width: 90%;
+#btn {
+    width: 100%;
     background-color: rgb(128, 0, 90);
     color: rgb(233, 231, 231);
     font-weight: bold;
@@ -39,4 +38,32 @@ a {
     margin-top: 1.5em;
     cursor: pointer;
     text-align: center;
+}
+
+table {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    font-family: '';
+    overflow: hidden;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+table thead th {
+    background: #009578;
+    color: white;
+}
+
+table td,
+table th {
+    padding: 10px 20px;
+    text-align: center;
+}
+
+table tbody tr:nth-of-type(even) {
+    background: #eeeeee;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid #009578;
 }
