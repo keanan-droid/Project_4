@@ -4,6 +4,9 @@ const email = document.getElementById(`email`);
 const password = document.getElementById(`password`);
 const url = `https://randomuser.me/api/?results=10`;
 
+
+
+
 const isAdmin = [
     {
         email: "@schoolofit",
@@ -14,24 +17,23 @@ const isAdmin = [
 localStorage.setItem('isAdmin', JSON.stringify(isAdmin));
 const Admin = localStorage.getItem("isAdmin",isAdmin);
 
+email.addEventListener('input', () => 
+check(email.value))
+
 btn.addEventListener('click', (e) => {
-    e.preventDefault();
     check();
+
 })
 
-function check() {
-    const value = email.value;
-    if (value !== Admin) {
-        fetchdataUser();
-    }
-    else {
+function check(eValue) {
+    console.log(eValue);
+    if (Admin.includes(eValue)) {
         fetchdataAdmin();
     }
+    else {
+        fetchdataUser();
+    }
 }
-
-email.addEventListener('keyup', (e) => {
-    check(e.target.value);
-})
 
 function fetchdataUser() {
     fetch(url)
