@@ -20,7 +20,7 @@ btn.addEventListener('click', () => {
         // edit.addEventListener('click',(e) =>{
         //     console.log("hllo world");
         //     editUser();
-        })
+        // })
     }
     else {
         fetchdataUser();
