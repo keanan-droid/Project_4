@@ -12,15 +12,11 @@ localStorage.setItem('isAdmin', isAdmin);
 const Admin = localStorage.getItem("isAdmin");
 
 
-btn.addEventListener('click', () => {
+btn.addEventListener('click', (e) => {
     e.preventDefault();
     if (email.value === Admin) {
         fetchdataAdmin();
         container.style.display = "none";
-        // edit.addEventListener('click',(e) =>{
-        //     console.log("hllo world");
-        //     editUser();
-        // })
     }
     else {
         fetchdataUser();
@@ -28,10 +24,6 @@ btn.addEventListener('click', () => {
     }
 })
 
-// function editUser() {
-//     const rows = document.getElementById(`row`);
-//     console.log(rows);
-// }
 
 
 function fetchdataUser() {
