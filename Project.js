@@ -3,37 +3,36 @@ const btn = document.getElementById(`btn`);
 const email = document.getElementById(`email`);
 const password = document.getElementById(`password`);
 const url = `https://randomuser.me/api/?results=10`;
+const container = document.getElementById('container');
+const edit = document.getElementById('edit');
+const modal_btn = document.getElementById(`modal-btn`)
+
+const isAdmin = "@schoolofit";
+localStorage.setItem('isAdmin', isAdmin);
+const Admin = localStorage.getItem("isAdmin");
 
 
-
-
-const isAdmin = [
-    {
-        email: "@schoolofit",
-        isAdmin: true
-    }
-];
-
-localStorage.setItem('isAdmin', JSON.stringify(isAdmin));
-const Admin = localStorage.getItem("isAdmin",isAdmin);
-
-email.addEventListener('input', () => 
-check(email.value))
-
-btn.addEventListener('click', (e) => {
-    check();
-
-})
-
-function check(eValue) {
-    console.log(eValue);
-    if (Admin.includes(eValue)) {
+btn.addEventListener('click', () => {
+    e.preventDefault();
+    if (email.value === Admin) {
         fetchdataAdmin();
+        container.style.display = "none";
+        // edit.addEventListener('click',(e) =>{
+        //     console.log("hllo world");
+        //     editUser();
+        })
     }
     else {
         fetchdataUser();
+        container.style.display = "none";
     }
-}
+})
+
+// function editUser() {
+//     const rows = document.getElementById(`row`);
+//     console.log(rows);
+// }
+
 
 function fetchdataUser() {
     fetch(url)
@@ -57,7 +56,7 @@ function fetchdataUser() {
             `;
         })
         .join('');
-        tbody.insertAdjacentHTML('afterbegin',html);
+        tbody.innerHTML = html;
     })
     .catch(error => {
         console.log(error);
@@ -76,13 +75,14 @@ function fetchdataAdmin() {
         const html = data.results
         .map(user => {
             return `
-            <tr>
+            <tr id="row">
                 <td>${user.name.title}</td>
                 <td>${user.name.first}</td>
                 <td>${user.name.last}</td>
                 <td>${user.email}</td>
                 <td>${user.gender}</td>
-                <td><button id="modal">"EDIT"</button></td>
+                <td><button id="edit">"EDIT"</button></td>
+                <td><button id="delete">"Delete"</button></td>
             </tr>
             `;
         })
@@ -93,3 +93,12 @@ function fetchdataAdmin() {
         console.log(error);
     });
 }
+
+
+
+// MODAL
+
+
+
+
+

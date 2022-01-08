@@ -8,7 +8,7 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="container">
+  <div id="container">
     <form id="form">
 
       <label for="email">Email</label>
@@ -17,13 +17,45 @@
       <label for="password">Password</label>
       <input type="password" id="password" name="password" >
 
-      <a href="./Information.html" id="btn">Login</a>
+      <button id="btn">Login</button>
     </form>
   </div>
 
-  <div id="bg-modal">
-    <div id="box-modal">
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+</div>
 
+<div id="bg-modal" style="display: none">
+    <div id="box-modal">
+        <label id="modal-label">Title</label>
+        <input id="modal-text" type="text">
+
+        <label id="modal-label">Firstname</label>
+        <input id="modal-text" type="text">
+
+        <label id="modal-label">Lastname</label>
+        <input id="modal-text" type="text">
+
+        <label id="modal-label">Email</label>
+        <input id="modal-text" type="text">
+
+        <label id="modal-label">Gender</label>
+        <input id="modal-text" type="text">
+
+        <button id="modal-btn">Accept</button>
     </div>
   </div>
   <script src="./Project.js"></script>
