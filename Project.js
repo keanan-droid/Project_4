@@ -9,7 +9,7 @@ const modal_btn = document.getElementById(`modal-btn`);
 
 const isAdmin = "@schoolofit";
 const Admin = localStorage.getItem("isAdmin");
-const myAdmin = localStorage.setItem("lasldas");
+const myAdmin = localStorage.setItem("isAmin");
 
 btn.addEventListener("click", (e) => {
   e.preventDefault();
